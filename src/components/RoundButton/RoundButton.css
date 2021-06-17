@@ -1,0 +1,22 @@
+.roundbutton {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	border: none;
+	background-color: #ffffff;
+	-webkit-box-shadow: 3px 3px 15px 0px #000000;
+	box-shadow: 3px 3px 15px 0px #000000;
+}
+.roundbutton:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+	transition: 0.2s;
+}
+.active {
+	border: 5px solid #000000;
+	box-sizing: border-box;
+}
+
+i {
+	font-size: 2rem;
+}

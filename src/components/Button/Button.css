@@ -1,0 +1,8 @@
+.button {
+	width: 381px;
+	height: 88px;
+	border-radius: 50px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 3px 3px 15px 0px #000000;
+	box-shadow: 3px 3px 15px 0px #000000;
+}
