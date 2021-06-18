@@ -7,11 +7,31 @@ import RoundButton from "../RoundButton/RoundButton";
 import Button from "../Button/Button";
 
 const Card = (props) => {
-	const { onClick, project, name, RoundButtonClick, active, disabled, timer } =
-		props;
+	const {
+		index,
+		onClick,
+		project,
+		name,
+		active,
+		disabled,
+		deleteCard,
+		pauseCard,
+		playCard,
+		undoCard,
+	} = props;
 
 	const [saisie, setSaisie] = useState("");
+	const [seconds, setSeconds] = useState([]);
 
+	const startTimer = () => {
+		const interval = setInterval(() => {
+			setSeconds((seconds) => seconds + 1);
+		}, 1000);
+	};
+
+	// setSeconds([...seconds, 0]);
+
+	// for icons
 	const buttons = ["fa-times", "fa-play", "fa-pause", "fa-undo"];
 
 	return (
@@ -21,26 +41,17 @@ const Card = (props) => {
 					<div className="top_container">
 						<h1>{name}</h1>
 						<RoundButton
+							value={buttons[0]}
 							active={active}
 							disabled={disabled}
-							value={buttons[0]}
-							onClick={() => RoundButtonClick(buttons[0])}
+							onClick={deleteCard}
 						/>
 					</div>
-					<div className="timer">{timer}</div>
+					<div className="timer">{seconds[index]}</div>
 					<div className="bot_container">
-						<RoundButton
-							value={buttons[1]}
-							onClick={() => RoundButtonClick(buttons[1])}
-						/>
-						<RoundButton
-							value={buttons[2]}
-							onClick={() => RoundButtonClick(buttons[2])}
-						/>
-						<RoundButton
-							value={buttons[3]}
-							onClick={() => RoundButtonClick(buttons[3])}
-						/>
+						<RoundButton value={buttons[1]} onClick={playCard} />
+						<RoundButton value={buttons[2]} onClick={pauseCard} />
+						<RoundButton value={buttons[3]} onClick={undoCard} />
 					</div>
 				</>
 			) : (

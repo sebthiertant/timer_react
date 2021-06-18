@@ -7,15 +7,6 @@ import CreateCard from "./components/CreateCard/CreateCard";
 function App() {
 	const [createTimer, setcreateTimer] = useState([]);
 	const [timerContent, setTimerContent] = useState([]);
-	const [seconds, setSeconds] = useState([0]);
-
-	const startTimer = () => {
-		const interval = setInterval(() => {
-			setSeconds((seconds) => seconds + 1);
-		}, 1000);
-	};
-
-	const active = false;
 
 	const createCard = () => {
 		setcreateTimer([...createTimer, createTimer.length]);
@@ -24,26 +15,22 @@ function App() {
 	const validationTimer = (saisie, event) => {
 		event.preventDefault();
 		setTimerContent([...timerContent, saisie]);
-		setSeconds([...seconds, seconds]);
 	};
 
-	const RoundButtonClick = (button) => {
-		switch (button) {
-			case "fa-times":
-				console.log("supprimer");
-				break;
-			case "fa-play":
-				console.log("lecture");
-				break;
-			case "fa-pause":
-				console.log("pause");
-				break;
-			case "fa-undo":
-				console.log("réinitialiser");
-				break;
-			default:
-				return;
-		}
+	// buttons functions
+	const active = false;
+
+	const deleteCard = () => {
+		console.log("supprimer");
+	};
+	const pauseCard = () => {
+		console.log("pause");
+	};
+	const playCard = () => {
+		console.log("lecture");
+	};
+	const undoCard = () => {
+		console.log("réinitialiser");
 	};
 
 	return (
@@ -53,16 +40,19 @@ function App() {
 					<Card
 						active={active}
 						// disabled={}
-						timer={seconds[index]}
 						project={timerContent[index] !== undefined}
 						key={index}
+						index={index}
 						onClick={validationTimer}
-						RoundButtonClick={RoundButtonClick}
+						deleteCard={deleteCard}
+						pauseCard={pauseCard}
+						playCard={playCard}
+						undoCard={undoCard}
 						name={timerContent[index]}
 					/>
 				);
 			})}
-			<CreateCard onClick={(e) => createCard(e)} />
+			<CreateCard onClick={createCard} />
 		</div>
 	);
 }
